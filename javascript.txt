@@ -1,0 +1,39 @@
+let recipes = [
+    // Existing recipes
+];
+
+function displayRecipes(recipes) {
+    // Existing code
+}
+
+function searchRecipes() {
+    const searchTerm = document.getElementById('search').value.toLowerCase();
+    const filteredRecipes = recipes.filter(recipe =>
+        recipe.name.toLowerCase().includes(searchTerm) ||
+        recipe.ingredients.join(',').toLowerCase().includes(searchTerm)
+    );
+
+    displayRecipes(filteredRecipes);
+}
+
+function addRecipe() {
+    const recipeName = document.getElementById('recipeName').value;
+    const recipeImage = document.getElementById('recipeImage').value;
+    const recipeIngredients = document.getElementById('recipeIngredients').value.split(',');
+
+    const newRecipe = {
+        name: recipeName,
+        image: recipeImage,
+        ingredients: recipeIngredients.map(ingredient => ingredient.trim()),
+    };
+
+    recipes.push(newRecipe);
+    displayRecipes(recipes);
+
+    // Clear the form fields
+    document.getElementById('recipeName').value = '';
+    document.getElementById('recipeImage').value = '';
+    document.getElementById('recipeIngredients').value = '';
+}
+
+displayRecipes(recipes);
